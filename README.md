@@ -1,1 +1,0 @@
-# libraray_managements
