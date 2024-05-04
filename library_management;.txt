@@ -1,0 +1,45 @@
+use library_management; 
+select * from authors_record;
+select * from bookinfo;
+select * from publication;
+select * from library_students;
+select * from borrowed_books;
+select * from books_category;
+
+# find the sudent id , publication name and books id where the price of book is more than 350.
+
+select b.student_id,p.book_id,p.publication_name,p.price from borrowed_books b right join publication p on b.books_id=p.book_id where price>350;
+
+# find the name of the book ,book id ,price , the author id and name of author .
+
+select b.id_books,b.name,b.author_id,a.name,a.phone_no from bookinfo b inner join authors_record a on b.Author_id=a.Author_id order by a.Name asc;
+
+# find the book_id student_id name of the student and address who hold the books for more than 200 days.
+
+select b.student_id,b.books_id,b.holding_time,b.fair_of_book as price ,l.name_of_student,l.email_id 
+from borrowed_books b right join library_students l 
+on b.student_id=l.student_id 
+where holding_time>200 and fair_of_book>300;
+
+# find the name of the students whose name start from word and have "a" in second position .
+
+select * from library_students where name_of_student like'_a%';
+
+
+# write the name id and email of the student in a single column and having '-' between them.
+
+select CONCAT_WS(' - ',student_id,name_of_student,len(name_of_student),email_id) from library_students;
+
+
+# select the name of the student only those length of name is greater than 12.
+
+select * from library_students WHERE LEN(NAME_OF_STUDENT)>12;
+
+# find the book which was frequently been in demand and have issued for more than or equal to 2 students.
+
+select books_id,count(books_id) as books_repeated from borrowed_books group by books_id having COUNT(books_id)>=2;
+
+# find the no of books written by a author.
+
+select Author_id,COUNT(id_books) from bookinfo group by Author_id ;
+
