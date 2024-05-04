@@ -30,7 +30,6 @@ select * from library_students where name_of_student like'_a%';
 
 select CONCAT_WS(' - ',student_id,name_of_student,len(name_of_student),email_id) from library_students;
 
-
 # select the name of the student only those length of name is greater than 12.
 
 select * from library_students WHERE LEN(NAME_OF_STUDENT)>12;
